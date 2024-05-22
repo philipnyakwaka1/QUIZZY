@@ -1,1 +1,1 @@
-# QUIZZY
+quizz app
