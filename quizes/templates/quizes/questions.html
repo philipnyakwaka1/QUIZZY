@@ -2,12 +2,14 @@
 
 {% block content %}
 {% if quiz is not None %}
-<h1>{{ quiz.name }}</h1>
-<h2>{{ quiz.topic }}</h2>
-<h3>{{ quiz.number_of_questions }} questions</h3>
-<h3>{{ quiz.time }} minutes</h3>
-<h3>Required score: {{ quiz.required_score_to_pass }}%</h3>
-<h3>Difficulty: {{ quiz.difficulty }}</h3>
-<p>{{ quiz.get_questions }}</p>
+<div class="container" style="text-align: center; margin-top: 5%;">
+    <h2 id="quiz-name">{{ quiz.name }}</h2>
+    <p id="number-of-questions">Quuestions: {{ quiz.number_of_questions }}</p>
+    <p id="duration">Duration: {{ quiz.time }} minutes</p>
+    <p id="required-score">Required Score: 80%</p>
+    <p>Difficulty: {{ quiz.difficulty }}</p>
+    <button id="start-quiz" class="btn btn-primary">Click Here to Start Quiz</button>
+</div>
+
 {% endif %}
 {% endblock %}

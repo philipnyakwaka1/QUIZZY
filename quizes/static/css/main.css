@@ -16,5 +16,9 @@ body {
 .centered-container {
     width: 80%;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
+}
+.quiz_info {
+    margin: 20px;
+    background-color: burlywood;
 }
