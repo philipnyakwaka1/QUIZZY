@@ -1,0 +1,13 @@
+{% extends 'quizes/base.html' %}
+
+{% block content %}
+{% if quiz is not None %}
+<h1>{{ quiz.name }}</h1>
+<h2>{{ quiz.topic }}</h2>
+<h3>{{ quiz.number_of_questions }} questions</h3>
+<h3>{{ quiz.time }} minutes</h3>
+<h3>Required score: {{ quiz.required_score_to_pass }}%</h3>
+<h3>Difficulty: {{ quiz.difficulty }}</h3>
+<p>{{ quiz.get_questions }}</p>
+{% endif %}
+{% endblock %}

@@ -5,3 +5,16 @@
     text-align: center;
     background-color: azure;
 }
+._main {
+    background-color: azure;
+    margin-right:  auto;
+    margin-left:  auto;
+}
+body {
+    background-color: azure;
+}
+.centered-container {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto
+}
