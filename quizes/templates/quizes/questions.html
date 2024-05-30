@@ -16,30 +16,38 @@
         <div class="col-md-10 col-lg-10">
             <div class="border">
                 <div id="timer" class="text-right p-3">Time Left: <span id="time-left">{{ time_in_seconds }}</span> seconds</div>
-                {% for question in quiz.get_questions %}
-                    <div class="question bg-white p-3 border-bottom">
-                        <div class="d-flex flex-row align-items-center question-title">
-                            <h3 class="text-danger">Q.</h3>
-                            <h5 class="mt-1 ml-2">{{ question.text }}</h5>
-                        </div>
-                        <div class="ans ml-2">
-                            <div class="row">
-                                {% for answer in question.get_answers %}
-                                    <div class="col-12">
-                                        <label class="radio w-100"> 
-                                            <input type="radio" name="{{ question.id }}" value="{{ answer.text }}" data-correct="{{ answer.correct|yesno:"True,False" }}"> 
-                                            <span>{{ answer.text }}</span>
-                                        </label>
-                                    </div>
-                                {% endfor %}   
+                <form id="quiz-form" method="post" action="{% url 'submit-view' %}">
+                    {% csrf_token %}
+                    {% for question in quiz.get_questions %}
+                        <div class="question bg-white p-3 border-bottom">
+                            <div class="d-flex flex-row align-items-center question-title">
+                                <h3 class="text-danger">Q.</h3>
+                                <h5 class="mt-1 ml-2">{{ question.text }}</h5>
+                            </div>
+                            <div class="ans ml-2">
+                                <div class="row">
+                                    {% for answer in question.get_answers %}
+                                        <div class="col-12">
+                                            <label class="radio w-100"> 
+                                                <input type="radio" name="{{ question.id }}" value="{{ answer.text }}" data-correct="{{ answer.correct|yesno:"True,False" }}"> 
+                                                <span>{{ answer.text }}</span>
+                                            </label>
+                                        </div>
+                                    {% endfor %}   
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
-                <button id="submit-quiz" class="btn btn-success">Submit Quiz</button>
+                    {% endfor %}
+                    <input type="hidden" name="score" id="score">
+                    <input  type="hidden" name="quiz_name" id="quiz_name" value="{{ quiz.name }}">
+                    <button id="submit-quiz" class="btn btn-primary" style="margin-left: 20%; margin-top: 2%; margin-bottom: 2%;">Submit Quiz</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+<script>
+    const csrfToken = '{{ csrf_token }}';
+</script>
 {% endif %}
 {% endblock %}

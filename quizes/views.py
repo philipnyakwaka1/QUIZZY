@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from questions.models import Question, Answer
@@ -8,6 +10,35 @@ from .models import Quiz
 from results.models import Result
 from django.contrib.auth.decorators import login_required
 
+@csrf_exempt
+def submit_page(request):
+    if request.method == 'POST':
+        score = request.POST.get('score')
+        quiz_name = request.POST.get('quiz_name')
+        quiz = Quiz.objects.filter(name=quiz_name).first()
+        user = request.user
+
+        result = Result.objects.create(
+            quiz=quiz,
+            user=user,
+            score=score,
+        )
+        
+        return render(request, 'quizes/results.html', {'result': result})
+    
+    return redirect('home-view')
+
+def results_page(request):
+    score = request.GET.get('score')
+    total = request.GET.get('total')
+    if score is None or total is None:
+        return HttpResponse("Invalid request")
+    try:
+        score = int(score)
+        total = int(total)
+    except ValueError:
+        return HttpResponse("Invalid parameters")
+    return render(request, 'quizes/results.html', {'score': score, 'total': total})
 def questions_page(request):
     return render(request, 'quizes/questions.html')
 def home_page(request):

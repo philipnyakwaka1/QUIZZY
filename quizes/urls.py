@@ -7,4 +7,6 @@ urlpatterns=[
     path('login', views.login_page, name='login-view'),
     path('logout', views.logout_page, name='logout-view'),
     path('questions', views.questions_page, name='questions-view'),
+    path('submit', views.submit_page, name='submit-view'),
+    path('results/<int:result_id>', views.results_page, name='results-view'), 
 ]

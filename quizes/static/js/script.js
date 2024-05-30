@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const quizInfo = document.getElementById('quiz-info');
     const questionsContainer = document.getElementById('questions-container');
     const timerElement = document.getElementById('time-left');
+    const scoreInput = document.getElementById('score');
+    const correctCountInput = document.getElementById('correct_count');
+    const totalQuestionsInput = document.getElementById('total_questions');
+    const quizForm = document.getElementById('quiz-form');
     let timer;
 
     startQuizButton.addEventListener('click', function() {
@@ -20,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     });
 
-    submitQuizButton.addEventListener('click', function() {
+    submitQuizButton.addEventListener('click', function(event) {
+        event.preventDefault();
         if (confirm('Are you sure you want to submit the quiz?')) {
             submitQuiz();
         }
@@ -36,16 +41,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 correctCount++;
             }
         });
-        fetch('/submit-quiz', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': '{{ csrf_token }}'
-            },
-            body: JSON.stringify({ score: correctCount, total: questions.length })
-        }).then(response => response.json())
-          .then(data => {
-              alert('You got ' + correctCount + ' correct answers out of ' + questions.length);
-          }).catch(error => console.error('Error:', error));
+
+        const totalQuestions = questions.length;
+        const score = (correctCount / totalQuestions) * 100;
+
+        scoreInput.value = score;
+
+        quizForm.submit();
     }
 });
