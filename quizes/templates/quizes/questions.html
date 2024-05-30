@@ -2,14 +2,44 @@
 
 {% block content %}
 {% if quiz is not None %}
-<div class="container" style="text-align: center; margin-top: 5%;">
+<div id="quiz-info" class="container" style="text-align: center; margin-top: 5%;">
     <h2 id="quiz-name">{{ quiz.name }}</h2>
-    <p id="number-of-questions">Quuestions: {{ quiz.number_of_questions }}</p>
+    <p id="number-of-questions">Questions: {{ quiz.number_of_questions }}</p>
     <p id="duration">Duration: {{ quiz.time }} minutes</p>
     <p id="required-score">Required Score: 80%</p>
     <p>Difficulty: {{ quiz.difficulty }}</p>
     <button id="start-quiz" class="btn btn-primary">Click Here to Start Quiz</button>
 </div>
 
+<div id="questions-container" class="container mt-5" style="display: none;">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-10 col-lg-10">
+            <div class="border">
+                <div id="timer" class="text-right p-3">Time Left: <span id="time-left">{{ time_in_seconds }}</span> seconds</div>
+                {% for question in quiz.get_questions %}
+                    <div class="question bg-white p-3 border-bottom">
+                        <div class="d-flex flex-row align-items-center question-title">
+                            <h3 class="text-danger">Q.</h3>
+                            <h5 class="mt-1 ml-2">{{ question.text }}</h5>
+                        </div>
+                        <div class="ans ml-2">
+                            <div class="row">
+                                {% for answer in question.get_answers %}
+                                    <div class="col-12">
+                                        <label class="radio w-100"> 
+                                            <input type="radio" name="{{ question.id }}" value="{{ answer.text }}" data-correct="{{ answer.correct|yesno:"True,False" }}"> 
+                                            <span>{{ answer.text }}</span>
+                                        </label>
+                                    </div>
+                                {% endfor %}   
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <button id="submit-quiz" class="btn btn-success">Submit Quiz</button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endif %}
 {% endblock %}

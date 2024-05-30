@@ -11,10 +11,13 @@ from django.contrib.auth.decorators import login_required
 def questions_page(request):
     return render(request, 'quizes/questions.html')
 def home_page(request):
-    quiz_name = request.POST.get('quiz_name')
-    quiz = Quiz.objects.filter(name=quiz_name).first()
-    return render(request, 'quizes/questions.html', {'quiz': quiz})
-
+    if request.method == 'POST':
+        quiz_name = request.POST.get('quiz_name')
+        quiz = Quiz.objects.filter(name=quiz_name).first()
+        time_in_seconds = quiz.time * 60
+        return render(request, 'quizes/questions.html', {'quiz': quiz, 'time_in_seconds': time_in_seconds})
+    quizes = Quiz.objects.all()
+    return render(request, 'quizes/home.html', {'quizes': quizes})
 def login_page(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -30,7 +33,7 @@ def login_page(request):
 
 def logout_page(request): 
     logout(request)
-    return render(request, 'quizes/base.html')
+    return render(request, 'quizes/home.html')
 
 def register_page(request):
     if request.method == 'POST':
