@@ -27,33 +27,33 @@ Quizzy is a specialized quiz application tailored for higher education instituti
 
 
 ## Getting Started
-1. Installation
+1. **Installation**
 `git clone git@github.com:philipnyakwaka1/QUIZZY.git`
 
-2. SetUp Virtual Environment
-python -m venv venv
-source venv/bin/activate  # On Unix/Mac
-.\venv\Scripts\activate   # On Windows
+2. **SetUp Virtual Environment**
+- `python -m venv venv`
+- `source venv/bin/activate`  # On Unix/Mac
+- `.\venv\Scripts\activate`  # On Windows
 
-3. Install Dependencies
-pip install -r requirements.txt
+3. **Install Dependencies**
+`pip install -r requirements.txt`
 
-4. Database Migration
-python manage.py migrate
+4. **Database Migration**
+`python manage.py migrate`
 
-5. Run the Development Server
-python manage.py runserver
+5. **Run the Development Server**
+`python manage.py runserver`
 
-6. Access Quizzy
-Open your web browser and navigate to http://127.0.0.1:8000/ to access Quizzy.
+6. **Access Quizzy**
+Open your web browser and navigate to `http://127.0.0.1:8000/` to access Quizzy.
 
-Contribution
+## Contribution
 Contributions are welcome through issues or pull requests for any improvements or new features.
 
-License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-Acknowledgments
-1. Django: I would like to thank the Django community for their exceptional web framework that made building this project possible.
-2. Bootstrap: Special thanks to the Bootstrap community for providing a robust and responsive front-end framework that greatly enhanced the user interface of this application.
+## Acknowledgments
+- Django: I would like to thank the Django community for their exceptional web framework that made building this project possible.
+- Bootstrap: Special thanks to the Bootstrap community for providing a robust and responsive front-end framework that greatly enhanced the user interface of this application.
 
