@@ -9,6 +9,7 @@ from django.core.paginator import Paginator
 from .models import Quiz
 from results.models import Result
 from django.contrib.auth.decorators import login_required
+from datetime import date
 
 @csrf_exempt
 def submit_page(request):
@@ -17,17 +18,22 @@ def submit_page(request):
         quiz_name = request.POST.get('quiz_name')
         quiz = Quiz.objects.filter(name=quiz_name).first()
         user = request.user
-
+        if Result.objects.filter(user=user, quiz=quiz).exists():
+            messages.error(request, 'You have already taken this test, You cannot retake!')
+            return redirect('profile-view')
         result = Result.objects.create(
             quiz=quiz,
             user=user,
             score=score,
         )
         
-        return render(request, 'quizes/results.html', {'result': result})
+        return render(request, 'quizes/profile.html', {'result': result})
     
-    return redirect('home-view')
-
+    return render(request, 'quizes/profile.html')
+def profile_page(request):
+    results = Result.objects.all()
+    courses = Quiz.objects.all()
+    return render(request, 'quizes/profile.html', {'results': results, 'courses': courses, 'today': date.today()})
 def results_page(request):
     score = request.GET.get('score')
     total = request.GET.get('total')
@@ -89,3 +95,7 @@ def register_page(request):
         else:
             messages.error(request, 'Registration failed, try again!')
     return render(request, 'quizes/register.html')
+
+def search_page(request):
+    quiz = Quiz.objects.filter(name='Land Laws')
+    return render(request, 'quizes/search.html', {'quiz': quiz})

@@ -1,0 +1,56 @@
+{% extends 'quizes/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Profile Details Section -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    Profile Details
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">User Name: {{ user.username}}</h5>
+                    <p class="card-text">Email: {{ user.email }}</p>
+                    <p class="card-text">Joined: {{ today }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    Results
+                </div>
+                {% for result in results %}
+                <div class="card-body">
+                    <h5 class="card-title">CAT: {{ result.quiz.name }}</h5>
+                    <p class="card-text">Score: {{ result.score }}%</p>
+                    <p class="card-text">Created: {{ result.created_at}} </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- My Courses Section -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    My Courses
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Enrolled Courses</h5>
+                    {% for course in courses %}
+                    <p class="card-text">{{ course.name }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

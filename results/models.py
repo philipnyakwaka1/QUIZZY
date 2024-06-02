@@ -9,4 +9,4 @@ class Result(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return str(self.pk)
+        return str(f'CAT: {self.quiz.name}, Username: {self.user.username}, Score: {self.score}')

@@ -9,4 +9,6 @@ urlpatterns=[
     path('questions', views.questions_page, name='questions-view'),
     path('submit', views.submit_page, name='submit-view'),
     path('results/<int:result_id>', views.results_page, name='results-view'), 
+    path('profile', views.profile_page, name='profile-view'),
+    path('search', views.search_page, name="search-view"),
 ]

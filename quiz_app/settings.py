@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'quizes',
     'questions',
     'results',
+    'api_v1',
 ]
 
 MIDDLEWARE = [

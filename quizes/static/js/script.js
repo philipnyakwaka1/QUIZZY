@@ -50,3 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
         quizForm.submit();
     }
 });
+
+function redirectToSearch(event) {
+    event.preventDefault();
+    const query = document.getElementById('searchQuery').value;
+    window.location.href = `{% url 'search-view' %}?query=` + encodeURIComponent(query);
+}
