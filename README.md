@@ -1,6 +1,6 @@
-Quizzy
+#Quizzy
 
-Quizzy is a specialized quiz application tailored for higher education institutions, with a focus on simplifying the administration of continuous assessment tests for educators. Built using Django and Python, Quizzy offers comprehensive functionalities to support seamless user registration, data management, and automated quiz grading.
+##Quizzy is a specialized quiz application tailored for higher education institutions, with a focus on simplifying the administration of continuous assessment tests for educators. Built using Django and Python, Quizzy offers comprehensive functionalities to support seamless user registration, data management, and automated quiz grading.
 
 Features
 User Registration and Login
