@@ -51,7 +51,7 @@ Open your web browser and navigate to `http://127.0.0.1:8000/` to access Quizzy.
 Contributions are welcome through issues or pull requests for any improvements or new features.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the <a href='#'>LICENSE</a> file for details.
 
 ## Acknowledgments
 - Django: I would like to thank the Django community for their exceptional web framework that made building this project possible.
